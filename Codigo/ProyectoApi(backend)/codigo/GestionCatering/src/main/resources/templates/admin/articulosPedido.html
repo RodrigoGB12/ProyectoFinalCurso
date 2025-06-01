@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión Artículos - Pedidos</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <img src="/images/logo.png" alt="Logo" onerror="this.style.display='none';">
+            Mi Backend
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link active" th:href="@{/admin/dashboard}">Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/admin/alergenos}">Alergenos</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/admin/clientes}">Clientes</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/admin/menu}">Menu</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/admin/pedidos}">Pedidos</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/admin/personal}">Personal</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/admin/articulosMenuAlergenos}">Menu-Alergenos</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/admin/articulosPedido}">Menu-Pedidos</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <h1>Relaciones Artículos - Pedidos</h1>
+
+    <!-- Tabla de Relaciones -->
+    <h2>Listado de Articulos-Pedido</h2>
+    <table class="table table-striped table-hover">
+        <thead class="table-dark">
+        <tr>
+            <th>Pedido</th>
+            <th>Artículo</th>
+            <th>Cantidad</th>
+            <th>Precio</th>
+            <th>Personal</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="articuloPedido : ${articulosPedidos}">
+            <td th:text="${articuloPedido.pedido.id}"></td>
+            <td th:text="${articuloPedido.articuloMenu.nombre}"></td>
+            <td th:text="${articuloPedido.cantidad}"></td>
+            <td th:text="${articuloPedido.precio}"></td>
+            <td th:text="${articuloPedido.personal.nombre}"></td>
+            <td>
+                <a th:href="@{'/admin/articulosPedido/edit/' + ${articuloPedido.id}}"
+                   class="btn btn-sm btn-primary me-1">Editar</a>
+                <a th:href="@{'/admin/articulosPedido/delete/' + ${articuloPedido.id}}"
+                   class="btn btn-sm btn-danger"
+                   onclick="return confirm('¿Está seguro de eliminar esta relación?');">Eliminar</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- Formulario de Añadir/Editar Artículos - Pedidos -->
+    <section>
+        <div class="card mt-4">
+            <div class="card-header">
+                <h2 th:text="${articuloPedido.id == null ? 'Crear Nuevo Pedido' : 'Editar Pedido'}"></h2>
+            </div>
+            <div class="card-body">
+                <form th:action="@{/admin/articulosPedido/save}" th:object="${articuloPedido}" method="post">
+                    <input type="hidden" th:field="*{id}">
+
+                    <!-- Campo para seleccionar el pedido -->
+                    <div class="mb-3">
+                        <label for="pedido" class="form-label">Pedido</label>
+                        <select id="pedido" th:field="*{pedido}" class="form-control" required>
+                            <option value="" disabled selected>Seleccione un pedido</option>
+                            <option th:each="pedido : ${pedidos}" th:value="${pedido.id}" th:text="${pedido.id}"></option>
+                        </select>
+                    </div>
+
+                    <!-- Campo para seleccionar el artículo de menú -->
+                    <div class="mb-3">
+                        <label for="articuloMenu" class="form-label">Artículo de Menú</label>
+                        <select id="articuloMenu" th:field="*{articuloMenu}" class="form-control" required>
+                            <option value="" disabled selected>Seleccione un artículo</option>
+                            <option th:each="articuloMenu : ${articulosMenu}" th:value="${articuloMenu.id}" th:text="${articuloMenu.nombre}"></option>
+                        </select>
+                    </div>
+
+                    <!-- Campo para cantidad -->
+                    <div class="mb-3">
+                        <label for="cantidad" class="form-label">Cantidad</label>
+                        <input type="number" id="cantidad" th:field="*{cantidad}" class="form-control" required />
+                    </div>
+
+                    <!-- Campo para seleccionar el personal -->
+                    <div class="mb-3">
+                        <label for="personal" class="form-label">Personal</label>
+                        <select id="personal" th:field="*{personal}" class="form-control" required>
+                            <option value="" disabled selected>Seleccione un personal</option>
+                            <option th:each="personal : ${personales}" th:value="${personal.id}" th:text="${personal.nombre}"></option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-success me-2">Guardar</button>
+                    <a th:href="@{/admin/articulosPedido}" class="btn btn-secondary">Cancelar</a>
+                </form>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- Footer -->
+<footer class="mt-5 py-3">
+    <div class="container text-center">
+        <p class="mb-0">Backend V1.0 Acceso a Datos DAM</p>
+    </div>
+</footer>
+
+</body>
+</html>
