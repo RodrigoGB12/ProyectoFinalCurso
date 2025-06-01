@@ -1,0 +1,8 @@
+<app-navbar-s></app-navbar-s>
+
+<h1 style="align-self: center;">Pedidos</h1>
+<div class="row g-3 row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3">
+    <div class="col animated fadeIn slow" *ngFor="let pedido of pedidos">
+        <app-pedido-tarjeta [pedido]="pedido" (pedidoDeleted)="onPedidoDeleted($event)"></app-pedido-tarjeta>
+    </div>
+</div>

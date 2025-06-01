@@ -1,0 +1,5 @@
+<div class="row g-3 row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3">
+  <div class="col animated fadeIn slow" *ngFor="let plato of platos">
+    <app-plato-tarjeta [plato]="plato" (platoDeleted)="onPlatoDeleted($event)"></app-plato-tarjeta>
+  </div>
+</div>

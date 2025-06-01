@@ -1,0 +1,25 @@
+
+  .navbar-brand:hover {
+    color: #28a745 !important; 
+  }
+  
+  .offcanvas-dark .offcanvas-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+
+  .nav-link {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #c2c2c2 !important; /* Color gris claro para los enlaces */
+    transition: color 0.3s ease-in-out;
+    padding: 10px 15px;
+  }
+  
+  .nav-link:hover {
+    color: #28a745 !important; 
+    background-color: #343a40;
+    border-radius: 4px;
+  }
+  
+  

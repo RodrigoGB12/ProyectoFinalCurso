@@ -1,0 +1,179 @@
+/* Estilos base para el body y html */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto !important;
+  overflow-x: hidden;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  line-height: 1.6;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
+
+.col {
+    margin-bottom: 15px;
+    margin-top: 15px; 
+  }
+.linkImagen{
+  width: 100% !important;
+  height: 150px !important;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}  
+
+.linkImagen:hover {
+  transform: scale(1.02);
+}
+
+.grande {
+  max-width: 900px;
+  max-height: 700px;
+  padding: 5px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.card{
+  margin: 5px !important;
+  border-radius: 10px !important;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05) !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: none !important;
+  background-color: white;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1) !important;
+}
+
+.container {
+  flex: 1;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.titulo-centrado{
+  padding-top: 5%;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.titulo-centrado::after {
+  content: '';
+  display: block;
+  width: 50px;
+  height: 3px;
+  background: #3498db;
+  margin: 10px auto;
+  border-radius: 2px;
+}
+
+/* Estilos de botones */
+.btn {
+  border-radius: 25px !important;
+  padding: 8px 20px !important;
+  transition: all 0.3s ease !important;
+  font-weight: 500 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btn-primary {
+  background-color: #3498db !important;
+  border-color: #3498db !important;
+  box-shadow: 0 2px 4px rgba(52, 152, 219, 0.2) !important;
+}
+
+.btn-primary:hover {
+  background-color: #2980b9 !important;
+  border-color: #2980b9 !important;
+  box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3) !important;
+}
+
+/* Estilos de formularios */
+.form-control {
+  border-radius: 8px !important;
+  border: 1px solid #e1e1e1 !important;
+  padding: 10px 15px !important;
+  transition: all 0.3s ease !important;
+}
+
+.form-control:focus {
+  border-color: #3498db !important;
+  box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25) !important;
+}
+
+/* Animaciones generales */
+.fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Estilos de navegación */
+nav {
+  background-color: white !important;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05) !important;
+}
+
+/* Estilos para el footer */
+footer {
+  background-color: #2c3e50 !important;
+  color: white !important;
+  padding: 20px 0 !important;
+  margin-top: auto;
+}
+
+/* Utilidades */
+.shadow-sm {
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05) !important;
+}
+
+.shadow-md {
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+}
+
+.shadow-lg {
+  box-shadow: 0 8px 12px rgba(0,0,0,0.15) !important;
+}
+
+/* Estilos de texto */
+h1, h2, h3, h4, h5, h6 {
+  color: #2c3e50;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+p {
+  color: #555;
+  line-height: 1.7;
+}
+
+/* Estilos de enlaces */
+a {
+  color: #3498db;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #2980b9;
+  text-decoration: none;
+}

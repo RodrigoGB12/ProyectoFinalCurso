@@ -1,0 +1,23 @@
+<div class="container mt-5">
+    <div class="card shadow-lg p-4">
+        <div class="card-body">
+            <h2 class="card-title text-center mb-4">ID: {{pedido.id}}</h2>
+            <hr />
+            <ul class="list-group">
+                <li class="list-group-item"><strong>Fecha Pedido:</strong> {{pedido.fecha_pedido}}</li>
+                <li class="list-group-item"><strong>Estado:</strong> {{pedido.estado}}</li>
+                <li class="list-group-item"><strong>Monto:</strong> {{pedido.monto_total}}</li>
+                <li class="list-group-item"><strong>Cliente:</strong> {{pedido.cliente.nombre}}</li>
+                <li class="list-group-item"><strong>Personal:</strong> {{pedido.personal.nombre}}</li>
+            </ul>
+            <div class="text-center mt-3">
+                <button class="btn btn-primary me-3" [routerLink]="['/detalleP', pedido.id]">
+                    Ver Detalles
+                </button>
+                <button class="btn btn-danger" (click)="deletePedido()">
+                    <i class="fas fa-trash"></i> Eliminar Pedido
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

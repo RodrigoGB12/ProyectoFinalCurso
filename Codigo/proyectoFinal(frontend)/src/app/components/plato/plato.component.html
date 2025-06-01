@@ -1,0 +1,18 @@
+<div class="container">
+
+
+    <img [src]="'images/' +plato.imagen" class="card-img-top grande" alt="{{ plato.nombre }}">
+         
+
+    <h3 class="titulo-centrado">{{ plato.nombre }}</h3>
+    <p class="">{{ plato.descripcion }}</p>
+    <p class="">{{ plato.precio | number:'1.2-2' }}€</p>
+
+    <div class="alergenos-container">
+        <div *ngFor="let alergeno of alergenos">
+            <img [src]="'images/alergenos/'+alergeno.id+'.png'" class="icono">
+        </div>
+    </div>
+    
+
+</div>

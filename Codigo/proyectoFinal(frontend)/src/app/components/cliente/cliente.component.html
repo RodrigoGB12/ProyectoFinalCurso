@@ -1,0 +1,49 @@
+<div class="container mt-5">
+    <div class="card shadow-lg p-4">
+        <div class="card-body">
+            <h2 class="card-title text-center mb-4">Tu Información</h2>
+            <hr>
+            <ul class="list-group">
+                <li class="list-group-item"><strong>ID:</strong> {{ usuario?.id }}</li>
+                <li class="list-group-item"><strong>Nombre:</strong> {{ usuario?.nombre }}</li>
+                <li class="list-group-item"><strong>Correo Electrónico:</strong> {{ usuario?.correo_electronico }}</li>
+                <li class="list-group-item"><strong>Teléfono:</strong> {{ usuario?.telefono }}</li>
+                <li class="list-group-item"><strong>Dirección:</strong> {{ usuario?.direccion }}</li>
+                <li class="list-group-item"><strong>DNI:</strong> {{ usuario?.dni }}</li>
+            </ul>
+            <div class="text-center mt-4">
+                <a routerLink="/home" class="btn btn-primary">Volver al Inicio</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container mt-5">
+    <div class="card shadow-lg p-4">
+        <div class="card-body">
+            <h3 class="card-title text-center mb-4">Tus Pedidos</h3>
+            <hr>
+                        <div *ngIf="pedidosCliente.length > 0; else noPedidos">
+                            <div *ngFor="let pedido of pedidosCliente" class="mb-4">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="mb-0">Pedido #{{ pedido.id }}</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <p><strong>Fecha:</strong> {{ pedido.fecha_pedido }}</p>
+                                        <p><strong>Estado:</strong>{{ pedido.estado }}</p>
+                                        <p><strong>Monto Total:</strong> ${{ pedido.monto_total }}</p>
+                                        <p><strong>Personal Encargado:</strong> {{ pedido.personal.nombre }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <ng-template #noPedidos>
+                            <p class="text-center text-muted">Aún no has realizado ningún pedido.</p>
+                        </ng-template>
+                    </div>
+                </div>
+</div>
+

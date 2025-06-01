@@ -1,0 +1,13 @@
+<div class="card" style="width: 18rem;">
+  <a [routerLink]="['/plato/',plato.id]">
+    <img [src]="'images/' +plato.imagen" class="card-img-top linkImagen" alt="{{ plato.nombre }}">
+  </a>
+    
+    <div class="card-body">
+      <h5 class="card-title">{{ plato.nombre }}</h5>
+      <p class="card-price">{{ plato.precio | number:'1.2-2' }}€</p>
+      <button class="btn btn-danger" (click)="deletePlato()">
+        <i class="fas fa-trash"></i> Eliminar Plato
+      </button>
+    </div>
+  </div>

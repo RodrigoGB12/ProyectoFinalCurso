@@ -1,0 +1,216 @@
+<app-navbar-s></app-navbar-s>
+
+<div class="creacion-container">
+    <h2>Crear nuevo registro</h2>
+    
+    <!-- Error message display -->
+    <div *ngIf="errorMessage" class="error-message">
+        <i class="fas fa-exclamation-circle"></i>
+        {{ errorMessage }}
+    </div>
+
+    <!-- Loading spinner -->
+    <div *ngIf="isLoading" class="loading-spinner">
+        <div class="spinner"></div>
+        <p>Procesando...</p>
+    </div>
+
+    <!-- Selector principal -->
+    <div class="form-group">
+        <label for="tipo" class="required">Selecciona qué deseas crear:</label>
+        <select id="tipo" [(ngModel)]="tipoSeleccionado" class="selector" required>
+            <option value="">-- Selecciona --</option>
+            <option value="cliente">Cliente</option>
+            <option value="articulo">Artículo</option>
+            <option value="pedido">Pedido</option>
+            <option value="personal">Personal</option>
+        </select>
+    </div>
+
+    <!-- Cliente -->
+    <form *ngIf="tipoSeleccionado === 'cliente'" class="formulario animate-in" #clienteForm="ngForm">
+        <h3>Nuevo Cliente</h3>
+        <div class="form-group">
+            <label for="clienteNombre" class="required">Nombre:</label>
+            <input id="clienteNombre" 
+                   type="text" 
+                   [(ngModel)]="cliente.nombre" 
+                   name="nombre" 
+                   required 
+                   #nombre="ngModel"
+                   [class.is-invalid]="(nombre.invalid && (nombre.dirty || nombre.touched)) || (submitted && !cliente.nombre)"
+                   placeholder="Ingrese el nombre completo" />
+            <div class="invalid-feedback" *ngIf="(nombre.invalid && (nombre.dirty || nombre.touched)) || (submitted && !cliente.nombre)">
+                El nombre es obligatorio
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="clienteCorreo" class="required">Correo electrónico:</label>
+            <input id="clienteCorreo" 
+                   type="email" 
+                   [(ngModel)]="cliente.correo_electronico" 
+                   name="correo_electronico" 
+                   required 
+                   email
+                   #correo="ngModel"
+                   [class.is-invalid]="(correo.invalid && (correo.dirty || correo.touched)) || (submitted && !cliente.correo_electronico)"
+                   placeholder="ejemplo@correo.com" />
+            <div class="invalid-feedback" *ngIf="(correo.invalid && (correo.dirty || correo.touched)) || (submitted && !cliente.correo_electronico)">
+                Por favor, ingrese un correo electrónico válido
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="clienteTelefono" class="required">Teléfono:</label>
+            <input id="clienteTelefono" 
+                   type="tel" 
+                   [(ngModel)]="cliente.telefono" 
+                   name="telefono" 
+                   required 
+                   pattern="[0-9]*"
+                   #telefono="ngModel"
+                   [class.is-invalid]="(telefono.invalid && (telefono.dirty || telefono.touched)) || (submitted && !cliente.telefono)"
+                   placeholder="Ingrese solo números" />
+            <div class="invalid-feedback" *ngIf="(telefono.invalid && (telefono.dirty || telefono.touched)) || (submitted && !cliente.telefono)">
+                El teléfono solo debe contener números
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="clienteDireccion" class="required">Dirección:</label>
+            <input id="clienteDireccion" 
+                   type="text" 
+                   [(ngModel)]="cliente.direccion" 
+                   name="direccion" 
+                   required 
+                   #direccion="ngModel"
+                   [class.is-invalid]="(direccion.invalid && (direccion.dirty || direccion.touched)) || (submitted && !cliente.direccion)"
+                   placeholder="Calle, número, ciudad" />
+            <div class="invalid-feedback" *ngIf="(direccion.invalid && (direccion.dirty || direccion.touched)) || (submitted && !cliente.direccion)">
+                La dirección es obligatoria
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="clienteDni" class="required">DNI:</label>
+            <input id="clienteDni" 
+                   type="text" 
+                   [(ngModel)]="cliente.dni" 
+                   name="dni" 
+                   required 
+                   pattern="[0-9]{8}[A-Z]"
+                   #dni="ngModel"
+                   [class.is-invalid]="(dni.invalid && (dni.dirty || dni.touched)) || (submitted && !cliente.dni)"
+                   placeholder="12345678A" />
+            <div class="invalid-feedback" *ngIf="(dni.invalid && (dni.dirty || dni.touched)) || (submitted && !cliente.dni)">
+                Por favor, ingrese un DNI válido (8 números seguidos de una letra mayúscula)
+            </div>
+        </div>
+    </form>
+
+    <!-- Artículo -->
+    <form *ngIf="tipoSeleccionado === 'articulo'" class="formulario animate-in">
+        <h3>Nuevo Artículo</h3>
+        <div class="form-group">
+            <label for="articuloNombre" class="required">Nombre:</label>
+            <input id="articuloNombre" type="text" [(ngModel)]="articulo.nombre" name="nombre" required 
+                   placeholder="Nombre del artículo" />
+        </div>
+        <div class="form-group">
+            <label for="articuloDescripcion" class="required">Descripción:</label>
+            <textarea id="articuloDescripcion" [(ngModel)]="articulo.descripcion" name="descripcion" required 
+                      placeholder="Descripción detallada del artículo" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="articuloPrecio" class="required">Precio:</label>
+            <div class="input-group">
+                <span class="currency-symbol">€</span>
+                <input id="articuloPrecio" type="number" [(ngModel)]="articulo.precio" name="precio" required 
+                       min="0" step="0.01" placeholder="0.00" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="articuloImagen">Imagen:</label>
+            <input id="articuloImagen" type="text" [(ngModel)]="articulo.imagen" name="imagen" 
+                   placeholder="URL de la imagen" />
+        </div>
+    </form>
+
+    <!-- Pedido -->
+    <form *ngIf="tipoSeleccionado === 'pedido'" class="formulario animate-in">
+        <h3>Nuevo Pedido</h3>
+        <div class="form-group">
+            <label for="pedidoCliente" class="required">Nombre del cliente:</label>
+            <input id="pedidoCliente" type="text" [(ngModel)]="pedido.cliente" name="cliente" required 
+                   placeholder="Nombre del cliente" />
+            <small *ngIf="errorPersonal" class="error-text">Cliente no encontrado</small>
+        </div>
+        <div class="form-group">
+            <label for="pedidoFecha" class="required">Fecha:</label>
+            <input id="pedidoFecha" type="date" [(ngModel)]="pedido.fecha" name="fecha" required />
+        </div>
+        <div class="form-group">
+            <label for="pedidoMonto" class="required">Monto total:</label>
+            <div class="input-group">
+                <span class="currency-symbol">€</span>
+                <input id="pedidoMonto" type="number" [(ngModel)]="pedido.monto" name="monto" required 
+                       min="0" step="0.01" placeholder="0.00" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="pedidoPersonal" class="required">Nombre del personal:</label>
+            <input id="pedidoPersonal" type="text" [(ngModel)]="pedido.personal" name="personal" required 
+                   placeholder="Nombre del personal asignado" />
+            <small *ngIf="errorPersonal" class="error-text">Personal no encontrado</small>
+        </div>
+    </form>
+
+    <!-- Personal -->
+    <form *ngIf="tipoSeleccionado === 'personal'" class="formulario animate-in">
+        <h3>Nuevo Personal</h3>
+        <div class="form-group">
+            <label for="personalNombre" class="required">Nombre:</label>
+            <input id="personalNombre" type="text" [(ngModel)]="personal.nombre" name="nombre" required 
+                   placeholder="Nombre completo" />
+        </div>
+        <div class="form-group">
+            <label for="personalCorreo" class="required">Correo electrónico:</label>
+            <input id="personalCorreo" 
+                   type="email" 
+                   [(ngModel)]="personal.correo_electronico" 
+                   name="correo_electronico" 
+                   required 
+                   email
+                   #correoPersonal="ngModel"
+                   [class.is-invalid]="(correoPersonal.invalid && (correoPersonal.dirty || correoPersonal.touched))"
+                   placeholder="ejemplo@correo.com" />
+            <div class="invalid-feedback" *ngIf="correoPersonal.invalid && (correoPersonal.dirty || correoPersonal.touched)">
+                Por favor, ingrese un correo electrónico válido
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="personalTelefono" class="required">Teléfono:</label>
+            <input id="personalTelefono" type="tel" [(ngModel)]="personal.telefono" name="telefono" required 
+                   placeholder="Número de teléfono" />
+        </div>
+        <div class="form-group">
+            <label for="personalDni" class="required">DNI:</label>
+            <input id="personalDni" type="text" [(ngModel)]="personal.dni" name="dni" required 
+                   placeholder="Ingrese el DNI" pattern="[0-9]{8}[A-Z]" />
+        </div>
+        <div class="form-group">
+            <label for="personalRol" class="required">Rol:</label>
+            <select id="personalRol" [(ngModel)]="personal.rol" name="rol" required>
+                <option value="">-- Selecciona un rol --</option>
+                <option value="Cocinero">Cocinero</option>
+                <option value="Conductor">Conductor</option>
+            </select>
+        </div>
+    </form>
+
+    <!-- Botón para guardar -->
+    <div class="button-container">
+        <button (click)="crear()" [disabled]="!tipoSeleccionado || isLoading" class="submit-button">
+            <i class="fas fa-save"></i>
+            {{ isLoading ? 'Guardando...' : 'Guardar' }}
+        </button>
+    </div>
+</div>
+  

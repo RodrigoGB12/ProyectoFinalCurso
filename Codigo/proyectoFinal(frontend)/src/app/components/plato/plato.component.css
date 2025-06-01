@@ -1,0 +1,59 @@
+/* Estilos generales */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f8f8;
+    color: #333;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  /* Contenedor principal */
+  .container {
+    max-width: 400px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+  }
+  
+  /* Imagen */
+  .card-img-top {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+  
+  /* Título */
+  .titulo-centrado {
+    font-size: 24px;
+    color: #444;
+    margin-top: 15px;
+  }
+  
+  /* Descripción */
+  .container p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #666;
+    margin: 10px 0;
+  }
+  
+  /* Precio */
+  .container p:last-of-type {
+    font-weight: bold;
+    font-size: 20px;
+    color: #27ae60;
+  }
+  
+  .alergenos-container {
+    display: flex;
+    justify-content: flex-start; 
+    gap: 10px; 
+    flex-wrap: wrap; 
+}
+
+.icono {
+    width: 60px; 
+    height: 60px;
+}

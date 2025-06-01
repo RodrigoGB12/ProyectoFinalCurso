@@ -1,0 +1,20 @@
+<div class="container mt-5">
+    <div class="card shadow-lg p-4">
+        <div class="card-body">
+            <h2 class="card-title text-center mb-4">ID: {{ personal?.id }}</h2>
+            <hr>
+            <ul class="list-group">
+                <li class="list-group-item"><strong>Nombre:</strong> {{ personal?.nombre }}</li>
+                <li class="list-group-item"><strong>Rol:</strong> {{ personal?.rol }}</li>
+                <li class="list-group-item"><strong>Correo Electrónico:</strong> {{ personal?.correo_electronico }}</li>
+                <li class="list-group-item"><strong>Teléfono:</strong> {{ personal?.telefono }}</li>
+                <li class="list-group-item"><strong>DNI:</strong> {{ personal?.dni }}</li>
+            </ul>
+            <div class="text-center mt-3">
+                <button class="btn btn-danger" (click)="deletePersonal()">
+                    <i class="fas fa-trash"></i> Eliminar Personal
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

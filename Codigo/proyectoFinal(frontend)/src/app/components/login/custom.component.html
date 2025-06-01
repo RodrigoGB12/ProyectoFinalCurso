@@ -1,0 +1,17 @@
+<div class="login-page">
+  <div class="form" [ngStyle]="{'background-color': tema == 'oscuro'?'#2D2C2C':'white' }">
+
+    <form class="login-form">
+      <input [(ngModel)]="username" name="username" [ngStyle]="{'background': tema == 'oscuro'?'#9B9B9B':'#f2f2f2','color': tema == 'oscuro'?'white':'black' }" type="text" placeholder="Nombre de usuario"  />
+      <input [(ngModel)]="password" name="password" [ngStyle]="{'background': tema == 'oscuro'?'#9B9B9B':'#f2f2f2','color': tema == 'oscuro'?'white':'black' }" type="password" placeholder="DNI"/>
+      
+      <button (click)="inicioSesion()" (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()" [ngStyle]="{'background-color':colorLogin,'color':colorTextoLogin}" type="button" >login</button>
+      
+      <p [ngStyle]="{'color': tema == 'oscuro'?'white':'#b3b3b3' }"    *ngIf="mostrar" class="message">{{texto}} <a [ngStyle]="{'color':colorLink}" href="#">{{link}}</a></p>
+    </form>
+  </div>
+</div>
+
+<div *ngIf=perdido>
+  <h5 style="color: red;" >Usuario o DNI incorrecto</h5>
+</div>
